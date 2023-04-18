@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:date_format/date_format.dart';
 import 'package:own_project/screens/task_editor.dart';
@@ -9,6 +10,8 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 late Box box;
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.removeAfter(initialization);
   AwesomeNotifications().initialize(
     null,
     [
@@ -24,6 +27,12 @@ void main() async {
   Hive.registerAdapter<Task>(TaskAdapter());
   box = await Hive.openBox<Task>("tasks");
   runApp(const MyApp());
+}
+
+Future initialization(BuildContext? context) async {
+  await Future.delayed(
+    Duration(milliseconds: 500),
+  );
 }
 
 class MyApp extends StatelessWidget {

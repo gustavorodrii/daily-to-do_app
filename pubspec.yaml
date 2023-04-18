@@ -41,8 +41,8 @@ dependencies:
   date_format:
   flutter_local_notifications: ^13.0.0
   flutter_foreground_task: ^4.1.0
-  flutter_native_splash: ^2.2.19
   awesome_notifications: ^0.7.4+1
+  flutter_native_splash: ^2.2.19
 
 
 
@@ -50,7 +50,7 @@ dependencies:
 
 flutter_native_splash:
   color: "ffffff"
-  image: assets\images\Checklist-amico.png
+  image: assets\images\main.png
 
 dev_dependencies:
 
