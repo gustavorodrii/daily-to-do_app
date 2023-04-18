@@ -72,7 +72,6 @@ class _TaskEditorState extends State<TaskEditor> {
         channelKey: 'basic_channel',
         title: 'Reminder:',
         body: 'You just set a new to do',
-        displayOnForeground: true,
       ),
     );
   }
