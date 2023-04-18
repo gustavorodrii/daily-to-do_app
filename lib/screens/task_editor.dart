@@ -37,16 +37,16 @@ void _showTitleRequiredDialog(BuildContext context) {
             fontWeight: FontWeight.w200,
           ),
         ),
-        contentPadding: EdgeInsets.all(5),
+        contentPadding: const EdgeInsets.all(5),
         actions: <Widget>[
-          Container(
+          SizedBox(
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF8B008B),
+                backgroundColor: const Color(0xFF8B008B),
               ),
               child: const Text(
                 'OK',
@@ -79,6 +79,7 @@ class _TaskEditorState extends State<TaskEditor> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: no_leading_underscores_for_local_identifiers
     TextEditingController _taskTitle = TextEditingController(
         text: widget.task == null ? null : widget.task!.title!);
     // TextEditingController _taskNote = TextEditingController(
@@ -92,7 +93,7 @@ class _TaskEditorState extends State<TaskEditor> {
           margin: const EdgeInsets.only(top: 2, left: 10),
           child: Text(
             widget.task == null ? "Add a TO DO" : "Update your TO DO",
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontFamily: 'Varela Round',
               color: Color(0xFF8B008B),
@@ -179,7 +180,7 @@ class _TaskEditorState extends State<TaskEditor> {
             Expanded(
               child: Align(
                 alignment: FractionalOffset.bottomCenter,
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   height: 60,
                   child: RawMaterialButton(
@@ -207,6 +208,7 @@ class _TaskEditorState extends State<TaskEditor> {
                                   builder: (context) => const HomePage()));
                         } else {
                           await taskBox.add(newTask);
+                          // ignore: use_build_context_synchronously
                           Navigator.pop(
                               context,
                               MaterialPageRoute(
@@ -214,7 +216,7 @@ class _TaskEditorState extends State<TaskEditor> {
                         }
                       }
                     },
-                    fillColor: Color(0xFF8B008B),
+                    fillColor: const Color(0xFF8B008B),
                     child: Text(
                       widget.task == null ? "Add new TO DO" : "Update TO DO",
                       style: const TextStyle(

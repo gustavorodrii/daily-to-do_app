@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:own_project/screens/task_editor.dart';
 import '../models/task_model.dart';
 
 class MyListTile extends StatefulWidget {
@@ -34,8 +33,8 @@ class _MyListTileState extends State<MyListTile> {
           borderRadius: BorderRadius.circular(8),
         ),
         alignment: Alignment.centerRight,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
+        child: const Padding(
+          padding: EdgeInsets.all(8.0),
           child: Icon(
             Icons.delete,
             color: Colors.white,
@@ -65,7 +64,8 @@ class _MyListTileState extends State<MyListTile> {
                       fontWeight: FontWeight.bold,
                       decoration:
                           _isChecked ? TextDecoration.lineThrough : null,
-                      decorationColor: _isChecked ? Color(0xFF8B008B) : null,
+                      decorationColor:
+                          _isChecked ? const Color(0xFF8B008B) : null,
                     ),
                   ),
                 ),
@@ -80,7 +80,7 @@ class _MyListTileState extends State<MyListTile> {
                     },
                     activeColor: const Color(0xFF8B008B),
                     checkColor: Colors.white,
-                    side: BorderSide(color: Colors.black, width: 2),
+                    side: const BorderSide(color: Colors.black, width: 2),
                   ),
                 ),
                 IconButton(

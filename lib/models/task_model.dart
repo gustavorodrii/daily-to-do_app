@@ -11,10 +11,12 @@ class Task extends HiveObject {
   String? note;
 
   @HiveField(2)
+  // ignore: non_constant_identifier_names
   DateTime? creation_date;
 
   @HiveField(3)
   bool? done;
 
+  // ignore: non_constant_identifier_names
   Task({required this.title, this.note, this.creation_date, this.done});
 }

@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color(0xFF8B008B),
+        backgroundColor: const Color(0xFF8B008B),
         title: Container(
           margin: const EdgeInsets.only(top: 10),
           child: const Text(
@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Text(
                     formatDate(DateTime.now(), [d, ", ", MM, " ", yyyy]),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'Varela Round',
                       color: Color(0xFF8B008B),
                       fontSize: 18,
@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xFF8B008B),
+        backgroundColor: const Color(0xFF8B008B),
         onPressed: () {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => TaskEditor()));
