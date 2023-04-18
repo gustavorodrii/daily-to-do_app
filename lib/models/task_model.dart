@@ -16,5 +16,5 @@ class Task extends HiveObject {
   @HiveField(3)
   bool? done;
 
-  Task({this.title, this.note, this.creation_date, this.done});
+  Task({required this.title, this.note, this.creation_date, this.done});
 }

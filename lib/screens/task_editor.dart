@@ -65,11 +65,11 @@ void _showTitleRequiredDialog(BuildContext context) {
 }
 
 class _TaskEditorState extends State<TaskEditor> {
-  void _triggerNotification() {
+  triggerNotification() {
     AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: 10,
-        channelKey: 'baisc_channel',
+        channelKey: 'basic_channel',
         title: 'Reminder:',
         body: 'You just set a new to do',
       ),
@@ -183,8 +183,6 @@ class _TaskEditorState extends State<TaskEditor> {
                   height: 60,
                   child: RawMaterialButton(
                     onPressed: () async {
-                      _triggerNotification();
-
                       if (_taskTitle.text.isEmpty) {
                         _showTitleRequiredDialog(context);
                       } else {
@@ -194,6 +192,7 @@ class _TaskEditorState extends State<TaskEditor> {
                           creation_date: DateTime.now(),
                           done: false,
                         );
+                        triggerNotification();
 
                         Box<Task> taskBox = Hive.box<Task>("tasks");
                         if (widget.task != null) {
