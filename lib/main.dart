@@ -61,12 +61,12 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        elevation: 4,
+        elevation: 0,
         backgroundColor: Color(0xFF8B008B),
         title: Container(
           margin: const EdgeInsets.only(top: 10),
           child: const Text(
-            'Daily To-Do',
+            'Daily TO-DO',
             style: TextStyle(
               fontFamily: 'Dongle',
               fontSize: 48,

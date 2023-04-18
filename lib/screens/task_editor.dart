@@ -29,7 +29,7 @@ void _showTitleRequiredDialog(BuildContext context) {
           ),
         ),
         content: const Text(
-          'Please enter a title for the task.',
+          'Please enter a title for the TO DO.',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'Varela Round',
@@ -72,6 +72,7 @@ class _TaskEditorState extends State<TaskEditor> {
         channelKey: 'basic_channel',
         title: 'Reminder:',
         body: 'You just set a new to do',
+        displayOnForeground: true,
       ),
     );
   }
@@ -80,8 +81,8 @@ class _TaskEditorState extends State<TaskEditor> {
   Widget build(BuildContext context) {
     TextEditingController _taskTitle = TextEditingController(
         text: widget.task == null ? null : widget.task!.title!);
-    TextEditingController _taskNote = TextEditingController(
-        text: widget.task == null ? null : widget.task!.note!);
+    // TextEditingController _taskNote = TextEditingController(
+    //     text: widget.task == null ? null : widget.task!.note!);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -90,7 +91,7 @@ class _TaskEditorState extends State<TaskEditor> {
         title: Container(
           margin: const EdgeInsets.only(top: 2, left: 10),
           child: Text(
-            widget.task == null ? "Add a new Task" : "Update your Task",
+            widget.task == null ? "Add a TO DO" : "Update your TO DO",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontFamily: 'Varela Round',
@@ -129,52 +130,52 @@ class _TaskEditorState extends State<TaskEditor> {
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                hintText: "Your Task",
+                hintText: "TO DO Title",
                 hintStyle: const TextStyle(
                   fontFamily: 'Vareta Round',
                 ),
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Divider(
-              height: 30,
-              thickness: 1.0,
-              color: Color(0xFF8B008B),
-            ),
-            Container(
-              margin: const EdgeInsets.only(left: 5),
-              child: const Text(
-                "Notes",
-                style: TextStyle(
-                  fontFamily: 'Varela Round',
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            TextField(
-              keyboardType: TextInputType.multiline,
-              minLines: 5,
-              maxLines: 25,
-              controller: _taskNote,
-              decoration: InputDecoration(
-                fillColor: Colors.grey.shade100,
-                filled: true,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                hintText: "Write some Notes",
-                hintStyle: const TextStyle(
-                  fontFamily: 'Vareta Round',
-                ),
-              ),
-            ),
+            // const SizedBox(
+            //   height: 20,
+            // ),
+            // const Divider(
+            //   height: 30,
+            //   thickness: 1.0,
+            //   color: Color(0xFF8B008B),
+            // ),
+            // Container(
+            //   margin: const EdgeInsets.only(left: 5),
+            //   child: const Text(
+            //     "Notes",
+            //     style: TextStyle(
+            //       fontFamily: 'Varela Round',
+            //       fontSize: 22,
+            //       fontWeight: FontWeight.bold,
+            //     ),
+            //   ),
+            // ),
+            // const SizedBox(
+            //   height: 12,
+            // ),
+            // TextField(
+            //   keyboardType: TextInputType.multiline,
+            //   minLines: 5,
+            //   maxLines: 25,
+            //   controller: _taskNote,
+            //   decoration: InputDecoration(
+            //     fillColor: Colors.grey.shade100,
+            //     filled: true,
+            //     border: OutlineInputBorder(
+            //       borderSide: BorderSide.none,
+            //       borderRadius: BorderRadius.circular(8),
+            //     ),
+            //     hintText: "Write some Notes",
+            //     hintStyle: const TextStyle(
+            //       fontFamily: 'Vareta Round',
+            //     ),
+            //   ),
+            // ),
             Expanded(
               child: Align(
                 alignment: FractionalOffset.bottomCenter,
@@ -188,7 +189,7 @@ class _TaskEditorState extends State<TaskEditor> {
                       } else {
                         var newTask = Task(
                           title: _taskTitle.text,
-                          note: _taskNote.text,
+                          // note: _taskNote.text,
                           creation_date: DateTime.now(),
                           done: false,
                         );
@@ -197,7 +198,7 @@ class _TaskEditorState extends State<TaskEditor> {
                         Box<Task> taskBox = Hive.box<Task>("tasks");
                         if (widget.task != null) {
                           widget.task!.title = newTask.title;
-                          widget.task!.note = newTask.note;
+                          // widget.task!.note = newTask.note;
                           widget.task!.save();
 
                           Navigator.pop(
@@ -215,7 +216,7 @@ class _TaskEditorState extends State<TaskEditor> {
                     },
                     fillColor: Color(0xFF8B008B),
                     child: Text(
-                      widget.task == null ? "Add new Task" : "Update Task",
+                      widget.task == null ? "Add new TO DO" : "Update TO DO",
                       style: const TextStyle(
                         fontFamily: 'Varela Round',
                         color: Colors.white,
