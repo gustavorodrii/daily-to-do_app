@@ -61,7 +61,7 @@ class _MyListTileState extends State<MyListTile> {
                     style: TextStyle(
                       fontFamily: 'Varela Round',
                       fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                       decoration:
                           _isChecked ? TextDecoration.lineThrough : null,
                       decorationColor:
@@ -90,16 +90,38 @@ class _MyListTileState extends State<MyListTile> {
                   icon: const Icon(
                     Icons.delete,
                     color: Color(0xFF8B008B),
-                    size: 25,
+                    size: 27,
                   ),
                 ),
               ],
             ),
-            Text(
-              "Priority: ${widget.task.priorities}",
-            ),
-            Text(
-              "Time: ${widget.task.priorities}",
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(
+                  Icons.label,
+                  color: Colors.grey,
+                ),
+                Text(
+                  "0",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey,
+                  ),
+                ),
+                SizedBox(width: 200),
+                Icon(
+                  Icons.access_time,
+                  color: Colors.grey,
+                ),
+                Text(
+                  "0",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
