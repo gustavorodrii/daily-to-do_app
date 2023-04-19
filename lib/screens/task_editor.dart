@@ -107,7 +107,7 @@ class _TaskEditorState extends State<TaskEditor> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        iconTheme: const IconThemeData(color: Color(0xFF8B008B)),
+        iconTheme: const IconThemeData(color: Color(0xFFFF4500)),
         title: Container(
           margin: const EdgeInsets.only(top: 2, left: 10),
           child: Text(
@@ -115,7 +115,7 @@ class _TaskEditorState extends State<TaskEditor> {
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontFamily: 'Varela Round',
-              color: Color(0xFF8B008B),
+              color: Color(0xFFFF4500),
             ),
           ),
         ),
@@ -181,7 +181,7 @@ class _TaskEditorState extends State<TaskEditor> {
                       );
                     }).toList(),
                     decoration: InputDecoration(
-                      hintText: 'Etiqueta',
+                      hintText: 'Label',
                       prefixIcon: Icon(
                         Icons.label,
                         color: _priorityColors[_selectedPriority],
@@ -206,7 +206,7 @@ class _TaskEditorState extends State<TaskEditor> {
                     },
                     child: TextField(
                       decoration: const InputDecoration(
-                        hintText: 'Horário',
+                        hintText: 'Time',
                         prefixIcon: Icon(Icons.schedule),
                       ),
                       controller: TextEditingController(
@@ -263,7 +263,7 @@ class _TaskEditorState extends State<TaskEditor> {
                         }
                       }
                     },
-                    fillColor: const Color(0xFF8B008B),
+                    fillColor: const Color(0xFFFF4500),
                     child: Text(
                       widget.task == null ? "Add New" : "Add New",
                       style: const TextStyle(

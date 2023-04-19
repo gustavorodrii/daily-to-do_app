@@ -46,7 +46,7 @@ class _MyListTileState extends State<MyListTile> {
         width: double.infinity,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.grey.shade100,
+          color: Color.fromRGBO(0, 191, 255, 0.1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
@@ -89,7 +89,7 @@ class _MyListTileState extends State<MyListTile> {
                   },
                   icon: const Icon(
                     Icons.delete,
-                    color: Color(0xFF8B008B),
+                    color: Color(0xFFFF4500),
                     size: 27,
                   ),
                 ),
