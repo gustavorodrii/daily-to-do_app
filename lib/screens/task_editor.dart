@@ -144,7 +144,7 @@ class _TaskEditorState extends State<TaskEditor> {
             TextField(
               controller: _taskTitle,
               decoration: InputDecoration(
-                fillColor: Colors.grey.shade100,
+                fillColor: Color.fromRGBO(0, 191, 255, 0.1),
                 filled: true,
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
@@ -207,7 +207,10 @@ class _TaskEditorState extends State<TaskEditor> {
                     child: TextField(
                       decoration: const InputDecoration(
                         hintText: 'Time',
-                        prefixIcon: Icon(Icons.schedule),
+                        prefixIcon: Icon(
+                          Icons.schedule,
+                          color: Color(0xFFFF4500),
+                        ),
                       ),
                       controller: TextEditingController(
                         text: _timeOfDay.format(context),
