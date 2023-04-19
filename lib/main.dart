@@ -84,6 +84,19 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              icon: Icon(
+                Icons.filter_alt_outlined,
+                size: 30,
+                color: Colors.white,
+              ),
+              onPressed: () {},
+            ),
+          ),
+        ],
       ),
       body: ValueListenableBuilder<Box<Task>>(
         valueListenable: Hive.box<Task>("tasks").listenable(),
