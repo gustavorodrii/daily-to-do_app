@@ -95,6 +95,12 @@ class _MyListTileState extends State<MyListTile> {
                 ),
               ],
             ),
+            Text(
+              "Priority: ${widget.task.priorities}",
+            ),
+            Text(
+              "Time: ${widget.task.priorities}",
+            ),
           ],
         ),
       ),

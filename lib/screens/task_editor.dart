@@ -65,6 +65,18 @@ void _showTitleRequiredDialog(BuildContext context) {
 }
 
 class _TaskEditorState extends State<TaskEditor> {
+  TimeOfDay _timeOfDay = TimeOfDay.now();
+  Color _selectedColor = Colors.black;
+  TextEditingController? _taskTitle;
+
+  @override
+  void initState() {
+    super.initState();
+    _taskTitle = TextEditingController(
+      text: widget.task == null ? null : widget.task!.title!,
+    );
+  }
+
   triggerNotification() {
     AwesomeNotifications().createNotification(
       content: NotificationContent(
@@ -76,13 +88,21 @@ class _TaskEditorState extends State<TaskEditor> {
     );
   }
 
+  String _selectedPriority = 'Low priority';
+  final _priorities = [
+    'Low priority',
+    'Medium Priority',
+    'High priority',
+  ];
+
+  final _priorityColors = {
+    'Low priority': Colors.blue,
+    'Medium Priority': Colors.orange,
+    'High priority': Colors.red,
+  };
+
   @override
   Widget build(BuildContext context) {
-    // ignore: no_leading_underscores_for_local_identifiers
-    TextEditingController _taskTitle = TextEditingController(
-        text: widget.task == null ? null : widget.task!.title!);
-    // TextEditingController _taskNote = TextEditingController(
-    //     text: widget.task == null ? null : widget.task!.note!);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -91,7 +111,7 @@ class _TaskEditorState extends State<TaskEditor> {
         title: Container(
           margin: const EdgeInsets.only(top: 2, left: 10),
           child: Text(
-            widget.task == null ? "Add a TO DO" : "Update your TO DO",
+            widget.task == null ? "Back" : "Back",
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontFamily: 'Varela Round',
@@ -130,52 +150,80 @@ class _TaskEditorState extends State<TaskEditor> {
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                hintText: "TO DO Title",
+                hintText: "Write the name",
                 hintStyle: const TextStyle(
                   fontFamily: 'Vareta Round',
                 ),
               ),
             ),
-            // const SizedBox(
-            //   height: 20,
-            // ),
-            // const Divider(
-            //   height: 30,
-            //   thickness: 1.0,
-            //   color: Color(0xFF8B008B),
-            // ),
-            // Container(
-            //   margin: const EdgeInsets.only(left: 5),
-            //   child: const Text(
-            //     "Notes",
-            //     style: TextStyle(
-            //       fontFamily: 'Varela Round',
-            //       fontSize: 22,
-            //       fontWeight: FontWeight.bold,
-            //     ),
-            //   ),
-            // ),
-            // const SizedBox(
-            //   height: 12,
-            // ),
-            // TextField(
-            //   keyboardType: TextInputType.multiline,
-            //   minLines: 5,
-            //   maxLines: 25,
-            //   controller: _taskNote,
-            //   decoration: InputDecoration(
-            //     fillColor: Colors.grey.shade100,
-            //     filled: true,
-            //     border: OutlineInputBorder(
-            //       borderSide: BorderSide.none,
-            //       borderRadius: BorderRadius.circular(8),
-            //     ),
-            //     hintText: "Write some Notes",
-            //     hintStyle: const TextStyle(
-            //       fontFamily: 'Vareta Round',
-            //     ),
-            //   ),
-            // ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Expanded(
+                  child: DropdownButtonFormField<String>(
+                    value: _selectedPriority,
+                    icon: const Icon(
+                      Icons.arrow_drop_down,
+                      color: Colors.black,
+                    ),
+                    iconSize: 20,
+                    elevation: 0,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        _selectedPriority = newValue!;
+                      });
+                    },
+                    items: _priorities
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    decoration: InputDecoration(
+                      hintText: 'Etiqueta',
+                      prefixIcon: Icon(
+                        Icons.label,
+                        color: _priorityColors[_selectedPriority],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () async {
+                      final TimeOfDay? time = await showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay.fromDateTime(DateTime.now()),
+                      );
+                      if (time != null) {
+                        setState(() {
+                          _timeOfDay = time;
+                          _selectedColor = Colors.black;
+                        });
+                      }
+                    },
+                    child: TextField(
+                      decoration: const InputDecoration(
+                        hintText: 'Horário',
+                        prefixIcon: Icon(Icons.schedule),
+                      ),
+                      controller: TextEditingController(
+                        text: _timeOfDay.format(context),
+                      ),
+                      enabled: false,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: _selectedColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
             Expanded(
               child: Align(
                 alignment: FractionalOffset.bottomCenter,
@@ -184,11 +232,11 @@ class _TaskEditorState extends State<TaskEditor> {
                   height: 60,
                   child: RawMaterialButton(
                     onPressed: () async {
-                      if (_taskTitle.text.isEmpty) {
+                      if (_taskTitle!.text.isEmpty) {
                         _showTitleRequiredDialog(context);
                       } else {
                         var newTask = Task(
-                          title: _taskTitle.text,
+                          title: _taskTitle!.text,
                           // note: _taskNote.text,
                           creation_date: DateTime.now(),
                           done: false,
@@ -217,7 +265,7 @@ class _TaskEditorState extends State<TaskEditor> {
                     },
                     fillColor: const Color(0xFF8B008B),
                     child: Text(
-                      widget.task == null ? "Add new TO DO" : "Update TO DO",
+                      widget.task == null ? "Add New" : "Add New",
                       style: const TextStyle(
                         fontFamily: 'Varela Round',
                         color: Colors.white,

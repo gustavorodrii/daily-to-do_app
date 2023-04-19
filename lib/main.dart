@@ -31,7 +31,7 @@ void main() async {
 
 Future initialization(BuildContext? context) async {
   await Future.delayed(
-    Duration(milliseconds: 500),
+    Duration(milliseconds: 300),
   );
 }
 
@@ -75,10 +75,10 @@ class _HomePageState extends State<HomePage> {
         title: Container(
           margin: const EdgeInsets.only(top: 10),
           child: const Text(
-            'Daily TO-DO',
+            'TO-DO',
             style: TextStyle(
-              fontFamily: 'Dongle',
-              fontSize: 48,
+              fontFamily: 'Varela Round',
+              fontSize: 28,
               color: Colors.white,
             ),
           ),
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   Text(
                     formatDate(DateTime.now(), [d, ", ", MM, " ", yyyy]),
