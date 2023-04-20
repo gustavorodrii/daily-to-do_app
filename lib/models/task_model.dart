@@ -21,8 +21,11 @@ class Task extends HiveObject {
   @HiveField(4)
   String? priorities;
 
+  DateTime? time;
+
   Task(
       {required this.title,
+      required this.time,
       this.note,
       this.creation_date,
       this.done,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:own_project/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/task_model.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 
@@ -240,9 +241,14 @@ class _TaskEditorState extends State<TaskEditor> {
                       } else {
                         var newTask = Task(
                           title: _taskTitle!.text,
-                          // note: _taskNote.text,
-                          creation_date: DateTime.now(),
                           done: false,
+                          time: DateTime(
+                            DateTime.now().year,
+                            DateTime.now().month,
+                            DateTime.now().day,
+                            _timeOfDay.hour,
+                            _timeOfDay.minute,
+                          ),
                         );
                         triggerNotification();
 

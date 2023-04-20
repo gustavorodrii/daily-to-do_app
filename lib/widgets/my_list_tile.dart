@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../models/task_model.dart';
 
 class MyListTile extends StatefulWidget {
@@ -115,7 +116,9 @@ class _MyListTileState extends State<MyListTile> {
                   color: Colors.grey,
                 ),
                 Text(
-                  "0",
+                  widget.task.time != null
+                      ? DateFormat('hh:mm a').format(widget.task.time!)
+                      : '',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
