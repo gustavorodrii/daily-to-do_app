@@ -27,7 +27,6 @@ class _MyListTileState extends State<MyListTile> {
       },
       background: Container(
         width: double.infinity,
-        margin: const EdgeInsets.only(bottom: 12),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: Colors.red,
@@ -42,91 +41,90 @@ class _MyListTileState extends State<MyListTile> {
           ),
         ),
       ),
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 12),
-        width: double.infinity,
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Color.fromRGBO(0, 191, 255, 0.1),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    widget.task.title!,
-                    style: TextStyle(
-                      fontFamily: 'Varela Round',
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      decoration:
-                          _isChecked ? TextDecoration.lineThrough : null,
-                      decorationColor:
-                          _isChecked ? const Color(0xFF8B008B) : null,
+      child: Material(
+        borderRadius: BorderRadius.circular(8),
+        elevation: 1,
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(0, 191, 255, 0.1),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      widget.task.title!,
+                      style: TextStyle(
+                        fontFamily: 'Varela Round',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        decoration:
+                            _isChecked ? TextDecoration.lineThrough : null,
+                        decorationColor:
+                            _isChecked ? const Color(0xFF8B008B) : null,
+                      ),
                     ),
                   ),
-                ),
-                Transform.scale(
-                  scale: 1.0,
-                  child: Checkbox(
-                    value: _isChecked,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        _isChecked = value!;
-                      });
+                  Transform.scale(
+                    scale: 1.0,
+                    child: Checkbox(
+                      value: _isChecked,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          _isChecked = value!;
+                        });
+                      },
+                      activeColor: const Color(0xFFFF4500),
+                      checkColor: Colors.white,
+                      side: const BorderSide(color: Colors.black, width: 2),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      widget.task.delete();
                     },
-                    activeColor: const Color(0xFFFF4500),
-                    checkColor: Colors.white,
-                    side: const BorderSide(color: Colors.black, width: 2),
+                    icon: const Icon(
+                      Icons.delete,
+                      color: Color(0xFFFF4500),
+                      size: 27,
+                    ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    widget.task.delete();
-                  },
-                  icon: const Icon(
-                    Icons.delete,
-                    color: Color(0xFFFF4500),
-                    size: 27,
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    widget.task.selectedPriority.toString(),
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(
-                  Icons.label,
-                  color: Colors.grey,
-                ),
-                Text(
-                  widget.task.selectedPriority.toString(),
-                  style: TextStyle(
-                    fontSize: 16,
+                  SizedBox(width: 100),
+                  Icon(
+                    Icons.access_time,
                     color: Colors.grey,
                   ),
-                ),
-                SizedBox(width: 200),
-                Icon(
-                  Icons.access_time,
-                  color: Colors.grey,
-                ),
-                Text(
-                  widget.task.time != null
-                      ? DateFormat('hh:mm a').format(widget.task.time!)
-                      : '',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
+                  Text(
+                    widget.task.time != null
+                        ? DateFormat('hh:mm a').format(widget.task.time!)
+                        : '',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -47,7 +47,7 @@ void _showTitleRequiredDialog(BuildContext context) {
                 Navigator.of(context).pop();
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF8B008B),
+                backgroundColor: const Color(0xFFFF4500),
               ),
               child: const Text(
                 'OK',
@@ -242,6 +242,7 @@ class _TaskEditorState extends State<TaskEditor> {
                         var newTask = Task(
                           title: _taskTitle!.text,
                           done: false,
+                          selectedPriority: selectedPriority,
                           time: DateTime(
                             DateTime.now().year,
                             DateTime.now().month,
