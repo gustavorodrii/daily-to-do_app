@@ -104,7 +104,7 @@ class _MyListTileState extends State<MyListTile> {
                   color: Colors.grey,
                 ),
                 Text(
-                  "0",
+                  widget.task.selectedPriority.toString(),
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey,

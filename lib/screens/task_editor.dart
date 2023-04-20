@@ -89,7 +89,7 @@ class _TaskEditorState extends State<TaskEditor> {
     );
   }
 
-  String _selectedPriority = 'Low priority';
+  String selectedPriority = 'Low priority';
   final _priorities = [
     'Low priority',
     'Medium Priority',
@@ -162,7 +162,7 @@ class _TaskEditorState extends State<TaskEditor> {
               children: [
                 Expanded(
                   child: DropdownButtonFormField<String>(
-                    value: _selectedPriority,
+                    value: selectedPriority,
                     icon: const Icon(
                       Icons.arrow_drop_down,
                       color: Colors.black,
@@ -171,7 +171,7 @@ class _TaskEditorState extends State<TaskEditor> {
                     elevation: 0,
                     onChanged: (String? newValue) {
                       setState(() {
-                        _selectedPriority = newValue!;
+                        selectedPriority = newValue!;
                       });
                     },
                     items: _priorities
@@ -185,7 +185,7 @@ class _TaskEditorState extends State<TaskEditor> {
                       hintText: 'Label',
                       prefixIcon: Icon(
                         Icons.label,
-                        color: _priorityColors[_selectedPriority],
+                        color: _priorityColors[selectedPriority],
                       ),
                     ),
                   ),
