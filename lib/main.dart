@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:date_format/date_format.dart';
+import 'package:own_project/screens/home_icon.dart';
 import 'package:own_project/screens/task_editor.dart';
 import 'package:own_project/widgets/my_list_tile.dart';
 import 'models/task_model.dart';
@@ -11,7 +11,6 @@ late Box box;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.removeAfter(initialization);
   AwesomeNotifications().initialize(
     null,
     [
@@ -75,7 +74,7 @@ class _HomePageState extends State<HomePage> {
         title: Container(
           margin: const EdgeInsets.only(top: 10),
           child: const Text(
-            'TO-DO',
+            'Just do iti !',
             style: TextStyle(
               fontFamily: 'Varela Round',
               fontSize: 28,
@@ -130,8 +129,33 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const Divider(
-                    height: 40,
+                    height: 20,
                     thickness: 1.0,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(right: 7),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_back_ios,
+                              color: Colors.grey,
+                              size: 12,
+                            ),
+                            Text(
+                              'slide to delete',
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5,
                   ),
                   Expanded(
                       child: ListView.builder(

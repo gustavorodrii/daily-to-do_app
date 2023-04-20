@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:own_project/main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../models/task_model.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 
