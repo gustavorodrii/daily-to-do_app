@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:date_format/date_format.dart';
-import 'package:own_project/screens/home_icon.dart';
 import 'package:own_project/screens/task_editor.dart';
 import 'package:own_project/widgets/my_list_tile.dart';
 import 'models/task_model.dart';
@@ -89,7 +88,7 @@ class _HomePageState extends State<HomePage> {
             child: IconButton(
               icon: Icon(
                 Icons.filter_alt_outlined,
-                size: 30,
+                size: 27,
                 color: Colors.white,
               ),
               onPressed: () {},

@@ -98,10 +98,10 @@ class _MyListTileState extends State<MyListTile> {
                   ),
                 ),
                 SizedBox(width: 100),
-                Icon(
-                  Icons.access_time,
-                  color: Colors.grey,
-                ),
+                // Icon(
+                //   Icons.access_time,
+                //   color: Colors.grey,
+                // ),
                 Text(
                   widget.task.time != null
                       ? DateFormat('hh:mm a').format(widget.task.time!)

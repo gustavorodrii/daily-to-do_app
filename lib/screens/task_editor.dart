@@ -29,7 +29,7 @@ void _showTitleRequiredDialog(BuildContext context) {
           ),
         ),
         content: const Text(
-          'Please enter a title for the TO DO.',
+          'Please enter a title.',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'Varela Round',
