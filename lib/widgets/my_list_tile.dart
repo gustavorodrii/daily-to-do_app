@@ -85,16 +85,6 @@ class _MyListTileState extends State<MyListTile> {
                     shape: CircleBorder(),
                   ),
                 ),
-                // IconButton(
-                //   onPressed: () {
-                //     widget.task.delete();
-                //   },
-                //   icon: const Icon(
-                //     Icons.delete,
-                //     color: Color(0xFFFF4500),
-                //     size: 27,
-                //   ),
-                // ),
               ],
             ),
             Row(
