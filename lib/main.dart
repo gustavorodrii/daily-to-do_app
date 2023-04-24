@@ -132,29 +132,26 @@ class _HomePageState extends State<HomePage> {
                     height: 20,
                     thickness: 1.0,
                   ),
-                  Visibility(
-                    visible: box.values.length != 0,
-                    child: Container(
-                      margin: EdgeInsets.only(right: 7),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.arrow_back_ios,
-                                color: Colors.grey,
-                                size: 12,
-                              ),
-                              Text(
-                                'slide to delete',
-                                style:
-                                    TextStyle(color: Colors.grey, fontSize: 16),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                  Container(
+                    margin: EdgeInsets.only(right: 7),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_back_ios,
+                              color: Colors.grey,
+                              size: 12,
+                            ),
+                            Text(
+                              'slide to delete',
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(

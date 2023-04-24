@@ -30,7 +30,7 @@ class _MyListTileState extends State<MyListTile> {
         width: double.infinity,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.red,
+          color: Color(0xFFFF4500),
           borderRadius: BorderRadius.circular(8),
         ),
         alignment: Alignment.centerRight,
@@ -45,7 +45,7 @@ class _MyListTileState extends State<MyListTile> {
       child: Container(
         margin: const EdgeInsets.only(bottom: 12),
         width: double.infinity,
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Color.fromRGBO(0, 191, 255, 0.1),
           borderRadius: BorderRadius.circular(8),
@@ -85,16 +85,16 @@ class _MyListTileState extends State<MyListTile> {
                     shape: CircleBorder(),
                   ),
                 ),
-                IconButton(
-                  onPressed: () {
-                    widget.task.delete();
-                  },
-                  icon: const Icon(
-                    Icons.delete,
-                    color: Color(0xFFFF4500),
-                    size: 27,
-                  ),
-                ),
+                // IconButton(
+                //   onPressed: () {
+                //     widget.task.delete();
+                //   },
+                //   icon: const Icon(
+                //     Icons.delete,
+                //     color: Color(0xFFFF4500),
+                //     size: 27,
+                //   ),
+                // ),
               ],
             ),
             Row(
