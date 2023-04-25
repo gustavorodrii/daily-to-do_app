@@ -34,12 +34,12 @@ Future initialization(BuildContext? context) async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
+    return MaterialApp(
+      home: const HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -82,19 +82,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         centerTitle: true,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-              icon: Icon(
-                Icons.filter_alt_outlined,
-                size: 27,
-                color: Colors.white,
-              ),
-              onPressed: () {},
-            ),
-          ),
-        ],
+        actions: [],
       ),
       body: ValueListenableBuilder<Box<Task>>(
         valueListenable: Hive.box<Task>("tasks").listenable(),
@@ -131,26 +119,29 @@ class _HomePageState extends State<HomePage> {
                     height: 20,
                     thickness: 1.0,
                   ),
-                  Container(
-                    margin: EdgeInsets.only(right: 7),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.grey,
-                              size: 12,
-                            ),
-                            Text(
-                              'slide to delete',
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 16),
-                            ),
-                          ],
-                        ),
-                      ],
+                  Visibility(
+                    visible: box.values.length != 0,
+                    child: Container(
+                      margin: EdgeInsets.only(right: 7),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.arrow_back_ios,
+                                color: Colors.grey,
+                                size: 12,
+                              ),
+                              Text(
+                                'slide to delete',
+                                style:
+                                    TextStyle(color: Colors.grey, fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(

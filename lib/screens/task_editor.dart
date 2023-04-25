@@ -67,13 +67,21 @@ void _showTitleRequiredDialog(BuildContext context) {
 class _TaskEditorState extends State<TaskEditor> {
   TimeOfDay _timeOfDay = TimeOfDay.now();
   Color _selectedColor = Colors.black;
-  TextEditingController? _taskTitle;
+  TextEditingController _taskTitle = TextEditingController();
+  TextEditingController _taskSelectedPriority = TextEditingController();
+  TextEditingController _taskTime = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     _taskTitle = TextEditingController(
       text: widget.task == null ? null : widget.task!.title!,
+    );
+    _taskSelectedPriority = TextEditingController(
+      text: widget.task == null ? null : widget.task!.selectedPriority!,
+    );
+    _taskTime = TextEditingController(
+      text: widget.task == null ? null : widget.task!.time!.toString(),
     );
   }
 
@@ -100,6 +108,14 @@ class _TaskEditorState extends State<TaskEditor> {
     'Medium Priority': Colors.orange,
     'High priority': Colors.red,
   };
+
+  @override
+  void dispose() {
+    _taskTitle?.dispose();
+    _taskSelectedPriority?.dispose();
+    _taskTime?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -171,6 +187,7 @@ class _TaskEditorState extends State<TaskEditor> {
                     onChanged: (String? newValue) {
                       setState(() {
                         selectedPriority = newValue!;
+                        _taskSelectedPriority!.text = selectedPriority;
                       });
                     },
                     items: _priorities
@@ -199,6 +216,7 @@ class _TaskEditorState extends State<TaskEditor> {
                       );
                       if (time != null) {
                         setState(() {
+                          _taskTime!.text = _timeOfDay.format(context);
                           _timeOfDay = time;
                           _selectedColor = Colors.black;
                         });
@@ -255,7 +273,9 @@ class _TaskEditorState extends State<TaskEditor> {
                         Box<Task> taskBox = Hive.box<Task>("tasks");
                         if (widget.task != null) {
                           widget.task!.title = newTask.title;
-                          // widget.task!.note = newTask.note;
+                          widget.task!.selectedPriority =
+                              newTask.selectedPriority;
+                          widget.task!.time = newTask.time;
                           widget.task!.save();
 
                           Navigator.pop(
@@ -264,7 +284,6 @@ class _TaskEditorState extends State<TaskEditor> {
                                   builder: (context) => const HomePage()));
                         } else {
                           await taskBox.add(newTask);
-                          // ignore: use_build_context_synchronously
                           Navigator.pop(
                               context,
                               MaterialPageRoute(
