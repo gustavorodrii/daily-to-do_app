@@ -30,7 +30,7 @@ class _MyListTileState extends State<MyListTile> {
         width: double.infinity,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Color(0xFFFF4500),
+          color: const Color(0xFFFF4500),
           borderRadius: BorderRadius.circular(8),
         ),
         alignment: Alignment.centerRight,
@@ -47,7 +47,7 @@ class _MyListTileState extends State<MyListTile> {
         width: double.infinity,
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: Color.fromRGBO(0, 191, 255, 0.1),
+          color: const Color.fromRGBO(0, 191, 255, 0.1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
@@ -82,7 +82,7 @@ class _MyListTileState extends State<MyListTile> {
                     activeColor: const Color(0xFFFF4500),
                     checkColor: Colors.white,
                     side: const BorderSide(color: Colors.black, width: 1),
-                    shape: CircleBorder(),
+                    shape: const CircleBorder(),
                   ),
                 ),
               ],
@@ -92,17 +92,17 @@ class _MyListTileState extends State<MyListTile> {
               children: [
                 Text(
                   widget.task.selectedPriority.toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
                   ),
                 ),
-                SizedBox(width: 100),
+                const SizedBox(width: 100),
                 Text(
                   widget.task.time != null
                       ? DateFormat('hh:mm a').format(widget.task.time!)
                       : '',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
                   ),

@@ -27,19 +27,13 @@ void main() async {
   runApp(const MyApp());
 }
 
-Future initialization(BuildContext? context) async {
-  await Future.delayed(
-    Duration(milliseconds: 300),
-  );
-}
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const HomePage(),
+    return const MaterialApp(
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -82,7 +76,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         centerTitle: true,
-        actions: [],
       ),
       body: ValueListenableBuilder<Box<Task>>(
         valueListenable: Hive.box<Task>("tasks").listenable(),
@@ -120,10 +113,10 @@ class _HomePageState extends State<HomePage> {
                     thickness: 1.0,
                   ),
                   Visibility(
-                    visible: box.values.length != 0,
+                    visible: box.values.isNotEmpty,
                     child: Container(
-                      margin: EdgeInsets.only(right: 7),
-                      child: Row(
+                      margin: const EdgeInsets.only(right: 7),
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Row(

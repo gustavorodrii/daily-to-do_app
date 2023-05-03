@@ -111,9 +111,9 @@ class _TaskEditorState extends State<TaskEditor> {
 
   @override
   void dispose() {
-    _taskTitle?.dispose();
-    _taskSelectedPriority?.dispose();
-    _taskTime?.dispose();
+    _taskTitle.dispose();
+    _taskSelectedPriority.dispose();
+    _taskTime.dispose();
     super.dispose();
   }
 
@@ -160,7 +160,7 @@ class _TaskEditorState extends State<TaskEditor> {
             TextField(
               controller: _taskTitle,
               decoration: InputDecoration(
-                fillColor: Color.fromRGBO(0, 191, 255, 0.1),
+                fillColor: const Color.fromRGBO(0, 191, 255, 0.1),
                 filled: true,
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
@@ -187,7 +187,7 @@ class _TaskEditorState extends State<TaskEditor> {
                     onChanged: (String? newValue) {
                       setState(() {
                         selectedPriority = newValue!;
-                        _taskSelectedPriority!.text = selectedPriority;
+                        _taskSelectedPriority.text = selectedPriority;
                       });
                     },
                     items: _priorities
@@ -216,7 +216,7 @@ class _TaskEditorState extends State<TaskEditor> {
                       );
                       if (time != null) {
                         setState(() {
-                          _taskTime!.text = _timeOfDay.format(context);
+                          _taskTime.text = _timeOfDay.format(context);
                           _timeOfDay = time;
                           _selectedColor = Colors.black;
                         });
@@ -253,11 +253,11 @@ class _TaskEditorState extends State<TaskEditor> {
                   height: 60,
                   child: RawMaterialButton(
                     onPressed: () async {
-                      if (_taskTitle!.text.isEmpty) {
+                      if (_taskTitle.text.isEmpty) {
                         _showTitleRequiredDialog(context);
                       } else {
                         var newTask = Task(
-                          title: _taskTitle!.text,
+                          title: _taskTitle.text,
                           done: false,
                           selectedPriority: selectedPriority,
                           time: DateTime(
@@ -284,6 +284,7 @@ class _TaskEditorState extends State<TaskEditor> {
                                   builder: (context) => const HomePage()));
                         } else {
                           await taskBox.add(newTask);
+                          // ignore: use_build_context_synchronously
                           Navigator.pop(
                               context,
                               MaterialPageRoute(
