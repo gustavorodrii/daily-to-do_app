@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import '../models/task_model.dart';
 
 class MyListTile extends StatefulWidget {
@@ -14,6 +13,9 @@ class MyListTile extends StatefulWidget {
 
 class _MyListTileState extends State<MyListTile> {
   bool _isChecked = false;
+
+  late AnimationController _animationController;
+  late Animation<Color?> _colorTween;
 
   @override
   Widget build(BuildContext context) {
@@ -83,28 +85,6 @@ class _MyListTileState extends State<MyListTile> {
                     checkColor: Colors.white,
                     side: const BorderSide(color: Colors.black, width: 1),
                     shape: const CircleBorder(),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  widget.task.selectedPriority.toString(),
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
-                ),
-                const SizedBox(width: 100),
-                Text(
-                  widget.task.time != null
-                      ? DateFormat('hh:mm a').format(widget.task.time!)
-                      : '',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
                   ),
                 ),
               ],

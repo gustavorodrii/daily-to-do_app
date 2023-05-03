@@ -25,8 +25,8 @@ class Task extends HiveObject {
   DateTime? time;
 
   Task(
-      {required this.title,
-      required this.time,
+      {this.title,
+      this.time,
       this.creation_date,
       this.done,
       this.selectedPriority});

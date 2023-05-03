@@ -1,26 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:date_format/date_format.dart';
-import 'package:own_project/screens/task_editor.dart';
 import 'package:own_project/widgets/my_list_tile.dart';
 import 'models/task_model.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 
 late Box box;
+Task? task;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  AwesomeNotifications().initialize(
-    null,
-    [
-      NotificationChannel(
-        channelKey: 'basic_channel',
-        channelName: 'Basic notifications',
-        channelDescription: 'Notification channel for basic tests',
-      ),
-    ],
-    debug: true,
-  );
+
   await Hive.initFlutter();
   Hive.registerAdapter<Task>(TaskAdapter());
   box = await Hive.openBox<Task>("tasks");
@@ -47,6 +37,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final TextEditingController _taskTitle = TextEditingController();
   @override
   void initState() {
     AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
@@ -89,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "Date",
+                    "Data",
                     style: TextStyle(
                       fontFamily: 'Varela Round',
                       color: Colors.black,
@@ -127,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                                 size: 12,
                               ),
                               Text(
-                                'slide to delete',
+                                'deslize para deletar',
                                 style:
                                     TextStyle(color: Colors.grey, fontSize: 16),
                               ),
@@ -157,8 +148,116 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xFFFF4500),
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => TaskEditor()));
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text(
+                'Nova Tarefa',
+                style: TextStyle(
+                  color: Color(0xFFFF4500),
+                  fontSize: 22,
+                ),
+              ),
+              content: TextFormField(
+                controller: _taskTitle,
+                decoration: const InputDecoration(
+                  hintText: 'Digite uma nova Tarefa',
+                  hintStyle: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              actions: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          Color(0xFFFF4500),
+                        ),
+                        elevation: MaterialStateProperty.all<double>(2),
+                      ),
+                      child: const Text(
+                        'Salvar',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ),
+                      onPressed: () {
+                        if (_taskTitle.text.isEmpty) {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text(
+                                'Erro',
+                                style: TextStyle(
+                                  color: Color(0xFFFF4500),
+                                ),
+                              ),
+                              content: const Text(
+                                  'Digite uma tarefa antes de salvar.'),
+                              actions: [
+                                TextButton(
+                                  style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                      Color(0xFFFF4500),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text(
+                                    'OK',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        } else {
+                          final newTask = Task(title: _taskTitle.text);
+                          box.add(newTask);
+                          _taskTitle.clear();
+
+                          Navigator.of(context).pop();
+                        }
+                      },
+                    ),
+                    TextButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          Colors.white,
+                        ),
+                        elevation: MaterialStateProperty.all<double>(2),
+                        side: MaterialStateProperty.all<BorderSide>(
+                          BorderSide(
+                            color: Color(0xFFFF4500),
+                            width: 1,
+                          ),
+                        ),
+                      ),
+                      child: const Text(
+                        'Cancelar',
+                        style: TextStyle(
+                          color: Color(0xFFFF4500),
+                          fontSize: 16,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
         },
         child: const Icon(Icons.add),
       ),
