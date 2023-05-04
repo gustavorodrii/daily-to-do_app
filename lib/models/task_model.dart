@@ -9,25 +9,11 @@ class Task extends HiveObject {
   @HiveField(0)
   String? title;
 
-  @HiveField(1)
-  String? note;
-
   @HiveField(2)
-  DateTime? creation_date;
+  bool? isChecked;
 
-  @HiveField(3)
-  bool? done;
-
-  @HiveField(4)
-  String? selectedPriority;
-
-  @HiveField(5)
-  DateTime? time;
-
-  Task(
-      {this.title,
-      this.time,
-      this.creation_date,
-      this.done,
-      this.selectedPriority});
+  Task({
+    this.title,
+    this.isChecked,
+  });
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import '../models/task_model.dart';
+
+late Box box;
 
 class MyListTile extends StatefulWidget {
   MyListTile(this.task, this.index, {Key? key}) : super(key: key);
@@ -12,10 +15,8 @@ class MyListTile extends StatefulWidget {
 }
 
 class _MyListTileState extends State<MyListTile> {
+  late Box<Task> box;
   bool _isChecked = false;
-
-  late AnimationController _animationController;
-  late Animation<Color?> _colorTween;
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:date_format/date_format.dart';
+import 'package:own_project/screens/splash_screen.dart';
 import 'package:own_project/widgets/my_list_tile.dart';
 import 'models/task_model.dart';
-import 'package:awesome_notifications/awesome_notifications.dart';
 
 late Box box;
 Task? task;
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomePage(),
+      home: SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -38,15 +38,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TextEditingController _taskTitle = TextEditingController();
-  @override
-  void initState() {
-    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
-      if (!isAllowed) {
-        AwesomeNotifications().requestPermissionToSendNotifications();
-      }
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -174,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                     ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
-                          Color(0xFFFF4500),
+                          const Color(0xFFFF4500),
                         ),
                         elevation: MaterialStateProperty.all<double>(2),
                       ),
@@ -203,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                                   style: ButtonStyle(
                                     backgroundColor:
                                         MaterialStateProperty.all<Color>(
-                                      Color(0xFFFF4500),
+                                      const Color(0xFFFF4500),
                                     ),
                                   ),
                                   onPressed: () {
@@ -221,7 +212,9 @@ class _HomePageState extends State<HomePage> {
                             ),
                           );
                         } else {
-                          final newTask = Task(title: _taskTitle.text);
+                          final newTask = Task(
+                            title: _taskTitle.text,
+                          );
                           box.add(newTask);
                           _taskTitle.clear();
 
@@ -236,7 +229,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         elevation: MaterialStateProperty.all<double>(2),
                         side: MaterialStateProperty.all<BorderSide>(
-                          BorderSide(
+                          const BorderSide(
                             color: Color(0xFFFF4500),
                             width: 1,
                           ),

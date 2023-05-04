@@ -18,10 +18,7 @@ class TaskAdapter extends TypeAdapter<Task> {
     };
     return Task(
       title: fields[0] as String?,
-      selectedPriority: fields[1] as String?,
-      creation_date: fields[2] as DateTime?,
-      done: fields[3] as bool?,
-      time: fields[4] as DateTime?,
+      isChecked: fields[1] as bool?,
     );
   }
 
@@ -32,11 +29,8 @@ class TaskAdapter extends TypeAdapter<Task> {
       ..writeByte(0)
       ..write(obj.title)
       ..writeByte(1)
-      ..write(obj.note)
       ..writeByte(2)
-      ..write(obj.creation_date)
-      ..writeByte(3)
-      ..write(obj.done);
+      ..writeByte(3);
   }
 
   @override
